@@ -7,4 +7,7 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+<<<<<<< HEAD
 /bin/
+=======
+>>>>>>> branch 'master' of https://github.com/form4/alfresco-webpreviewer.git
