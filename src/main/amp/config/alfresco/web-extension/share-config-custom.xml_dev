@@ -1,0 +1,47 @@
+<alfresco-config>
+	<!-- Global config section -->
+	<config replace="true">
+		<flags>
+			<!-- Developer debugging setting - DEBUG mode for client scripts in the browser -->
+			<client-debug>true</client-debug>
+
+			<!-- LOGGING can be toggled at runtime when in DEBUG mode (Ctrl, Ctrl, Shift, Shift). This flag automatically activates logging on page load. -->
+			<client-debug-autologging>false</client-debug-autologging>
+		</flags>
+	</config>
+
+	<config evaluator="string-compare" condition="WebFramework">
+		<web-framework>
+			<!-- Autowire Runtime Settings -->
+			<autowire>
+				<!-- Developers can set mode to 'production' or 'development' (to disable; SpringSurf caches, FreeMarker template caching and Rhino JavaScript compilation.) -->
+				<mode>development</mode>
+			</autowire>
+		</web-framework>
+	</config>
+
+<config evaluator="string-compare" condition="HtmlWebPreview">
+	<mimetypes>
+		<mimetype>text/plain</mimetype>
+		<mimetype>text/html</mimetype>
+		<mimetype>text/xhtml+xml</mimetype>
+		<mimetype>application/javascript</mimetype>
+		<mimetype>application/x-javascript</mimetype>
+		<mimetype>text/css</mimetype>
+		<mimetype>text/xml</mimetype>
+		<mimetype>message/rfc822</mimetype>
+	</mimetypes>
+	
+	<!-- <show-toc>true</show-toc> -->
+	<!-- <toc-min-headlines>1</toc-min-headlines> -->
+	<!-- <toc-max-headline-level>3</toc-max-headline-level> -->
+	
+	<!-- Set css stylesheets -->
+	<!-- It replaces default stylesheet, so you may need to add it and you custom css files -->
+	<!-- CSS files expect to be located in share resource directory -->
+	<stylesheets> 
+		<src>components/htmlwebpreview/htmlwebpreview.css</src>
+	</stylesheets>
+</config>
+
+</alfresco-config>
