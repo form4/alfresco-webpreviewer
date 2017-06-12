@@ -45,6 +45,18 @@
 		<license.canUpdateCopyright>true</license.canUpdateCopyright>
 	</properties>
 
+
+	<distributionManagement>
+		<repository>
+			<id>form4-releases</id>
+			<url>https://maven.form4.de/nexus/content/repositories/form4-releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>form4-snapshots</id>
+			<url>https://maven.form4.de/nexus/content/repositories/form4-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<!-- Here we realize the connection with the Alfresco selected platform (e.g.version and edition) -->
 	<dependencyManagement>
 		<dependencies>
@@ -102,6 +114,39 @@
 			<jsSourceDir>web</jsSourceDir> <cssSourceIncludes> <cssSourceInclude>**/*.css</cssSourceInclude> </cssSourceIncludes> <cssSourceExcludes> <cssSourceExclude>**/*-min.css</cssSourceExclude> 
 			</cssSourceExcludes> <jsSourceIncludes> <jsSourceInclude>**/*.js</jsSourceInclude> </jsSourceIncludes> <jsSourceExcludes> <jsSourceExclude>**/*-min.js</jsSourceExclude> </jsSourceExcludes> 
 			</configuration> <goals> <goal>minify</goal> </goals> </execution> </executions> </plugin> </plugins> -->
+
+		<plugins>
+
+			<!-- DEPLOY: JAR auch deployen, um durch Erweiterungspakete verwenden zu können -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+				<configuration>
+					<uniqueVersion>true</uniqueVersion>
+					<updateReleaseInfo>true</updateReleaseInfo>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy-file</goal>
+						</goals>
+						<configuration>
+							<uniqueVersion>true</uniqueVersion>
+							<updateReleaseInfo>true</updateReleaseInfo>
+							<packaging>zip</packaging>
+							<artifactId>${project.artifactId}</artifactId>
+							<groupId>${project.groupId}</groupId>
+							<version>${project.version}</version>
+							<file>${project.build.directory}/${project.build.finalName}.amp</file>
+							<repositoryId>${project.distributionManagement.repository.id}</repositoryId>
+							<url>${project.distributionManagement.repository.url}</url>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 
 
 		<!-- http://code.mycila.com/license-maven-plugin/ -->
