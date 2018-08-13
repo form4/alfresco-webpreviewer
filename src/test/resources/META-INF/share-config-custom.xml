@@ -1,0 +1,66 @@
+<!--
+  #%L
+  WebPreviewer - Share Extension
+  %%
+  Copyright (C) 2014 - 2018 form4 GmbH & Co. KG
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<alfresco-config>
+	<!-- Global config section -->
+	<config replace="true">
+		<flags>
+			<!-- Developer debugging setting - DEBUG mode for client scripts in the browser -->
+			<client-debug>true</client-debug>
+
+			<!-- LOGGING can be toggled at runtime when in DEBUG mode (Ctrl, Ctrl, Shift, Shift). This flag automatically activates logging on page load. -->
+			<client-debug-autologging>false</client-debug-autologging>
+		</flags>
+	</config>
+
+	<config evaluator="string-compare" condition="WebFramework">
+		<web-framework>
+			<!-- Autowire Runtime Settings -->
+			<autowire>
+				<!-- Developers can set mode to 'production' or 'development' (to disable; SpringSurf caches, FreeMarker template caching and Rhino JavaScript compilation.) -->
+				<mode>development</mode>
+			</autowire>
+		</web-framework>
+	</config>
+
+<config evaluator="string-compare" condition="HtmlWebPreview">
+	<mimetypes>
+		<mimetype>text/plain</mimetype>
+		<mimetype>text/html</mimetype>
+		<mimetype>text/xhtml+xml</mimetype>
+		<mimetype>application/javascript</mimetype>
+		<mimetype>application/x-javascript</mimetype>
+		<mimetype>text/css</mimetype>
+		<mimetype>text/xml</mimetype>
+		<mimetype>message/rfc822</mimetype>
+	</mimetypes>
+	
+	<show-toc>true</show-toc>
+	<toc-min-headlines>1</toc-min-headlines>
+	<toc-max-headline-level>3</toc-max-headline-level>
+	
+	<!-- Set css stylesheets -->
+	<!-- It replaces default stylesheet, so you may need to add it and you custom css files -->
+	<!-- CSS files expect to be located in share resource directory -->
+	<stylesheets> 
+		<src>components/htmlwebpreview/htmlwebpreview.css</src>
+	</stylesheets>
+</config>
+
+</alfresco-config>
