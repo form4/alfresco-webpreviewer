@@ -18,7 +18,6 @@
  * #L%
  */
 var honk = null;
-
 /**
  * WebPreview component rendering HTML oder other plain text contents inline on
  * a document-detail page. Will be associated with specific mimetypes by
@@ -29,6 +28,7 @@ var honk = null;
 Alfresco.WebPreview.prototype.Plugins.HtmlWebPreview = function(wp, attributes) {
 
 	this.wp = wp;
+	this.options = wp.options;
 	this.attributes = YAHOO.lang.merge(Alfresco.util.deepCopy(this.attributes),
 			attributes);
 	return this;
@@ -88,10 +88,11 @@ Alfresco.WebPreview.prototype.Plugins.HtmlWebPreview.prototype = {
 	 */
 	getDocument : function HtmlWebPreview_content_getdocument(nodeRef,
 			mimeType, cssClass) {
+		
+		var docUrl = this.wp.getContentUrl(false);
 		Alfresco.util.Ajax
 				.request({
-					url : Alfresco.constants.PROXY_URI + 'api/node/'
-							+ nodeRef.replace("://", "/") + '/content',
+					url : docUrl,
 					responseContentType : "text/html",
 					successCallback : {
 						fn : function(response) {
