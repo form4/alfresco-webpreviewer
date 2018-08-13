@@ -71,6 +71,12 @@
 		<!-- Compile with Java 7, default is 5 -->
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		
+		<license.licenceFile>${basedir}/src/main/resources/licenses/LICENSE.txt</license.licenceFile>
+		<license.licenseName>apache_v2</license.licenseName>
+		<license.addSvnKeyWords>false</license.addSvnKeyWords>
+		<license.canUpdateDescription>true</license.canUpdateDescription>
+		<license.canUpdateCopyright>true</license.canUpdateCopyright>
 	</properties>
 
 	<dependencies>
@@ -260,7 +266,7 @@
 						</excludes>
 						<roots>
 							<root>src/main/java</root>
-							<root>src/main/amp</root>
+							<root>src/main/resources</root>
 							<root>src/test</root>
 						</roots>
 					</configuration>
